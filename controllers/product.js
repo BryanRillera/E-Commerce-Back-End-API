@@ -12,6 +12,7 @@ module.exports.addProduct = async (req, res) => {
         let newProduct = new Product({
             breed: req.body.breed,
             description: req.body.description,
+            image: req.body.image,
             price: req.body.price,
         });
 
@@ -63,7 +64,8 @@ module.exports.updatedProduct = (req, res) => {
 
     let updatedProduct = {
         breed: req.body.breed,
-        description: req.body.description,
+        description: req.body.description,       
+        image: req.body.image,
         price: req.body.price
     }
 
@@ -141,7 +143,6 @@ module.exports.searchDogBreed = async (req, res) => {
   try {
     const { breed } = req.body;
 
-    // Use a regular expression to perform a case-insensitive search
     const products = await Product.find({
       breed: { $regex: breed, $options: 'i' }
     });
